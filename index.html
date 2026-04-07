@@ -192,30 +192,27 @@
             color: white;
         }
 
-        /* Image Carousel Section */
+        /* Image Carousel Section - FULL SCREEN HEIGHT (mobile) */
         .carousel-section {
-            padding: 60px 0 40px;
-            text-align: center;
+            padding: 0;
             position: relative;
-            overflow: hidden;
             background-color: var(--background-color);
+            overflow: hidden;
         }
 
         .carousel-container {
             position: relative;
             width: 100%;
-            max-width: 400px;
             margin: 0 auto;
-            border-radius: 20px;
             overflow: hidden;
-            box-shadow: var(--shadow);
+            box-shadow: none;
+            border-radius: 0;
         }
 
         .carousel-images {
             position: relative;
             width: 100%;
-            height: auto;
-            aspect-ratio: 1 / 1; /* maintain square-like ratio */
+            height: 100vh; /* takes full mobile screen height */
             background: #000;
         }
 
@@ -225,10 +222,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: cover; /* cover entire area without distortion */
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
-            border-radius: 20px;
         }
 
         .carousel-img.active {
@@ -242,8 +238,8 @@
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(4px);
             border: none;
-            width: 44px;
-            height: 44px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -252,7 +248,7 @@
             z-index: 10;
             transition: var(--transition);
             color: white;
-            font-size: 22px;
+            font-size: 24px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
@@ -745,6 +741,7 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
             .nav-container {
                 flex-direction: column;
@@ -776,15 +773,22 @@
                 gap: 10px;
             }
             .carousel-btn {
-                width: 38px;
-                height: 38px;
-                font-size: 18px;
+                width: 44px;
+                height: 44px;
+                font-size: 20px;
             }
             .dev-fab {
-                width: 50px;
-                height: 50px;
+                width: 55px;
+                height: 55px;
                 bottom: 20px;
                 left: 20px;
+            }
+        }
+
+        /* For very tall screens, ensure images fill height */
+        @media (min-height: 700px) {
+            .carousel-images {
+                height: 100vh;
             }
         }
     </style>
@@ -822,21 +826,19 @@
         </div>
     </header>
 
-    <!-- Image Carousel Section (replacing old floating image) -->
+    <!-- FULL SCREEN CAROUSEL (dark.png / light.png) with full mobile height -->
     <section class="carousel-section">
-        <div class="container">
-            <div class="carousel-container">
-                <div class="carousel-images">
-                    <img src="dark.png" alt="Dark Theme Preview" class="carousel-img active" id="img1">
-                    <img src="light.png" alt="Light Theme Preview" class="carousel-img" id="img2">
-                </div>
-                <button class="carousel-btn prev" id="prevBtn" aria-label="Previous image">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="carousel-btn next" id="nextBtn" aria-label="Next image">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
+        <div class="carousel-container">
+            <div class="carousel-images">
+                <img src="dark.png" alt="Dark Theme Preview" class="carousel-img active" id="img1">
+                <img src="light.png" alt="Light Theme Preview" class="carousel-img" id="img2">
             </div>
+            <button class="carousel-btn prev" id="prevBtn" aria-label="Previous image">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-btn next" id="nextBtn" aria-label="Next image">
+                <i class="fas fa-chevron-right"></i>
+            </button>
         </div>
     </section>
 
@@ -957,7 +959,7 @@
     </div>
 
     <script>
-        // ---------- IMAGE CAROUSEL (dark.png / light.png) with animation ----------
+        // IMAGE CAROUSEL (full screen, dark.png / light.png)
         const images = document.querySelectorAll('.carousel-img');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
@@ -986,10 +988,6 @@
 
         nextBtn.addEventListener('click', nextImage);
         prevBtn.addEventListener('click', prevImage);
-
-        // Optional: auto play? not requested, but fine.
-
-        // ---------- REMOVED update modal code completely ----------
 
         // Dark/Light mode toggle
         const themeToggle = document.getElementById('themeToggle');
@@ -1034,7 +1032,7 @@
             });
         });
 
-        // ---------- Developer Modal Logic ----------
+        // Developer Modal Logic
         const devFab = document.getElementById('devFab');
         const devModal = document.getElementById('devModal');
         const closeDevModal = document.getElementById('closeDevModal');
@@ -1052,7 +1050,6 @@
         devFab.addEventListener('click', openDevModal);
         closeDevModal.addEventListener('click', closeDevModalFunc);
 
-        // Close modal if clicking outside content
         window.addEventListener('click', (e) => {
             if (e.target === devModal) {
                 closeDevModalFunc();
@@ -1060,4 +1057,4 @@
         });
     </script>
 </body>
-</html>
+            </html>
