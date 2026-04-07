@@ -191,7 +191,7 @@
             color: white;
         }
 
-        /* Carousel section - SMALL BOX as requested */
+        /* Carousel section - exact aspect ratio 690:1536 (9:20) */
         .carousel-section {
             padding: 40px 0;
             background-color: var(--background-color);
@@ -201,7 +201,7 @@
         .carousel-container {
             position: relative;
             width: 100%;
-            max-width: 360px;   /* صغير ومناسب */
+            max-width: 360px;   /* حجم صغير مناسب */
             margin: 0 auto;
             border-radius: 20px;
             overflow: hidden;
@@ -209,10 +209,11 @@
             background: #000;
         }
 
+        /* نسبة الأبعاد الدقيقة 690 : 1536 */
         .carousel-images {
             position: relative;
             width: 100%;
-            height: 360px;  /* حجم مربع ثابت ومناسب (صغير) */
+            aspect-ratio: 690 / 1536; /* 9:20 بالضبط */
             background: #1a1a1a;
         }
 
@@ -222,7 +223,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;  /* تغطية المربع بدون تشويه كبير */
+            object-fit: contain;   /* تظهر الصورة كاملة بدون قص، وتحافظ على أبعادها */
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
         }
@@ -773,9 +774,6 @@
             .carousel-container {
                 max-width: 300px;
             }
-            .carousel-images {
-                height: 300px;
-            }
             .carousel-btn {
                 width: 36px;
                 height: 36px;
@@ -792,7 +790,7 @@
 </head>
 <body>
 
-    <!-- تم إزالة رسالة التحديث (update-modal) نهائياً -->
+    <!-- تم إزالة رسالة التحديث -->
 
     <header>
         <div class="container">
@@ -823,12 +821,12 @@
         </div>
     </header>
 
-    <!-- CAROUSEL بحجم صغير ومربع -->
+    <!-- CAROUSEL بنسبة أبعاد 690:1536 -->
     <section class="carousel-section">
         <div class="carousel-container">
             <div class="carousel-images">
-                <img src="dark.png" alt="Dark Theme Preview" class="carousel-img active" id="img1">
-                <img src="light.png" alt="Light Theme Preview" class="carousel-img" id="img2">
+                <img src="dark.png" alt="Dark Theme Preview" class="carousel-img active">
+                <img src="light.png" alt="Light Theme Preview" class="carousel-img">
             </div>
             <button class="carousel-btn prev" id="prevBtn" aria-label="Previous">
                 <i class="fas fa-chevron-left"></i>
@@ -844,34 +842,19 @@
         <div class="container">
             <h2 class="versions-title">WhatsApp Versions</h2>
             <div class="versions-main-box">
-                <!-- Version 1 -->
                 <div class="version-item">
                     <div class="version-content">
-                        <div class="whatsapp-icon">
-                            <i class="fab fa-whatsapp"></i>
-                        </div>
-                        <div class="version-text">
-                            <span class="version-id">com.sathwbg.easymassager</span>
-                        </div>
+                        <div class="whatsapp-icon"><i class="fab fa-whatsapp"></i></div>
+                        <div class="version-text"><span class="version-id">com.sathwbg.easymassager</span></div>
                     </div>
-                    <a href="https://www.mediafire.com/file/j9moew5uaha29w2/WhatsApp.apk/file" class="download-btn" target="_blank">
-                        Download
-                    </a>
+                    <a href="https://www.mediafire.com/file/j9moew5uaha29w2/WhatsApp.apk/file" class="download-btn" target="_blank">Download</a>
                 </div>
-                
-                <!-- Version 2 -->
                 <div class="version-item">
                     <div class="version-content">
-                        <div class="whatsapp-icon">
-                            <i class="fab fa-whatsapp"></i>
-                        </div>
-                        <div class="version-text">
-                            <span class="version-id">com.whats.ios.app</span>
-                        </div>
+                        <div class="whatsapp-icon"><i class="fab fa-whatsapp"></i></div>
+                        <div class="version-text"><span class="version-id">com.whats.ios.app</span></div>
                     </div>
-                    <a href="https://www.mediafire.com/file/hyvog8kgjcdcakv/WhatsApp_com.ios.whatsapp.apk/file?dlink=1" class="download-btn" target="_blank">
-                        Download
-                    </a>
+                    <a href="https://www.mediafire.com/file/hyvog8kgjcdcakv/WhatsApp_com.ios.whatsapp.apk/file?dlink=1" class="download-btn" target="_blank">Download</a>
                 </div>
             </div>
         </div>
@@ -881,21 +864,9 @@
         <div class="container">
             <h2 class="section-title">App Features</h2>
             <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h3>Advanced Security</h3>
-                    <p>Double encryption to protect your conversations and personal data.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-bolt"></i></div>
-                    <h3>Fast Performance</h3>
-                    <p>Optimized design ensures super fast loading and responsiveness.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-palette"></i></div>
-                    <h3>Full Customization</h3>
-                    <p>Choose from dozens of themes and colors to customize your app.</p>
-                </div>
+                <div class="feature-card"><div class="feature-icon"><i class="fas fa-shield-alt"></i></div><h3>Advanced Security</h3><p>Double encryption to protect your conversations and personal data.</p></div>
+                <div class="feature-card"><div class="feature-icon"><i class="fas fa-bolt"></i></div><h3>Fast Performance</h3><p>Optimized design ensures super fast loading and responsiveness.</p></div>
+                <div class="feature-card"><div class="feature-icon"><i class="fas fa-palette"></i></div><h3>Full Customization</h3><p>Choose from dozens of themes and colors to customize your app.</p></div>
             </div>
         </div>
     </section>
@@ -906,129 +877,56 @@
                 <h2>About iOS Store</h2>
                 <p>iOS Store is a leading platform for providing the best applications for iOS users. We focus on delivering a unique user experience with high-quality and secure applications.</p>
                 <p>We are constantly working to develop and improve our platform to meet the needs of our users.</p>
-                <div class="developer">
-                    <h3>Developer: Mohamed Ashraf</h3>
-                    <p>Professional application developer with extensive experience in creating innovative solutions for iOS users.</p>
-                </div>
+                <div class="developer"><h3>Developer: Mohamed Ashraf</h3><p>Professional application developer with extensive experience in creating innovative solutions for iOS users.</p></div>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <div class="footer-links">
-                <a href="#" class="footer-link">Privacy Policy</a>
-                <a href="#" class="footer-link">Terms of Use</a>
-                <a href="#" class="footer-link">Contact Us</a>
-            </div>
+            <div class="footer-links"><a href="#" class="footer-link">Privacy Policy</a><a href="#" class="footer-link">Terms of Use</a><a href="#" class="footer-link">Contact Us</a></div>
             <p class="copyright">© 2024 iOS Store By Mohamed Ashraf. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- زر المطور (يسار أسفل) -->
-    <div class="dev-fab" id="devFab">
-        <img src="dev.png" alt="Developer Avatar">
-    </div>
+    <div class="dev-fab" id="devFab"><img src="dev.png" alt="Developer Avatar"></div>
 
-    <!-- نافذة المطور -->
     <div id="devModal" class="dev-modal">
         <div class="dev-modal-content">
-            <div class="dev-modal-header">
-                <h2>Developer Profile</h2>
-            </div>
-            <div class="dev-avatar">
-                <img src="dev.png" alt="Mohamed Ashraf">
-            </div>
-            <div class="dev-info">
-                <h3>Mohamed Ashraf</h3>
-                <p><i class="fas fa-calendar-alt"></i> Age: 18 years</p>
-                <p><i class="fas fa-code"></i> Profession: App Developer & Web Developer</p>
-            </div>
+            <div class="dev-modal-header"><h2>Developer Profile</h2></div>
+            <div class="dev-avatar"><img src="dev.png" alt="Mohamed Ashraf"></div>
+            <div class="dev-info"><h3>Mohamed Ashraf</h3><p><i class="fas fa-calendar-alt"></i> Age: 18 years</p><p><i class="fas fa-code"></i> Profession: App Developer & Web Developer</p></div>
             <button class="close-dev-modal" id="closeDevModal">Close</button>
         </div>
     </div>
 
     <script>
-        // Carousel functionality
         const images = document.querySelectorAll('.carousel-img');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
         let currentIndex = 0;
-        const totalImages = images.length;
-
-        function updateCarousel() {
-            images.forEach((img, idx) => {
-                if (idx === currentIndex) img.classList.add('active');
-                else img.classList.remove('active');
-            });
-        }
-
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % totalImages;
-            updateCarousel();
-        });
-
-        prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
-            updateCarousel();
-        });
-
-        // Dark/Light mode
+        const total = images.length;
+        function update() { images.forEach((img, i) => i === currentIndex ? img.classList.add('active') : img.classList.remove('active')); }
+        nextBtn.onclick = () => { currentIndex = (currentIndex + 1) % total; update(); };
+        prevBtn.onclick = () => { currentIndex = (currentIndex - 1 + total) % total; update(); };
+        
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = themeToggle.querySelector('i');
         document.body.classList.remove('light-mode');
         themeIcon.classList.add('fa-sun');
-
-        themeToggle.addEventListener('click', () => {
+        themeToggle.onclick = () => {
             document.body.classList.toggle('light-mode');
-            if (document.body.classList.contains('light-mode')) {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-            } else {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-            }
+            if (document.body.classList.contains('light-mode')) { themeIcon.classList.remove('fa-sun'); themeIcon.classList.add('fa-moon'); }
+            else { themeIcon.classList.remove('fa-moon'); themeIcon.classList.add('fa-sun'); }
             localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
-        });
-
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            document.body.classList.add('light-mode');
-            themeIcon.classList.remove('fa-sun');
-            themeIcon.classList.add('fa-moon');
-        }
-
-        // Smooth scroll for anchors
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({ top: targetElement.offsetTop - 100, behavior: 'smooth' });
-                }
-            });
-        });
-
-        // Developer modal logic
-        const devFab = document.getElementById('devFab');
-        const devModal = document.getElementById('devModal');
-        const closeDevModal = document.getElementById('closeDevModal');
-
-        function openDevModal() {
-            devModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-        function closeDevModalFunc() {
-            devModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-        devFab.addEventListener('click', openDevModal);
-        closeDevModal.addEventListener('click', closeDevModalFunc);
-        window.addEventListener('click', (e) => {
-            if (e.target === devModal) closeDevModalFunc();
-        });
+        };
+        if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light-mode'); themeIcon.classList.remove('fa-sun'); themeIcon.classList.add('fa-moon'); }
+        
+        const devFab = document.getElementById('devFab'), devModal = document.getElementById('devModal'), closeDev = document.getElementById('closeDevModal');
+        devFab.onclick = () => { devModal.style.display = 'flex'; document.body.style.overflow = 'hidden'; };
+        const closeModal = () => { devModal.style.display = 'none'; document.body.style.overflow = 'auto'; };
+        closeDev.onclick = closeModal;
+        window.onclick = (e) => { if (e.target === devModal) closeModal(); };
     </script>
 </body>
-    </html>
+                        </html>
