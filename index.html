@@ -191,29 +191,38 @@
             color: white;
         }
 
-        /* Carousel section - exact aspect ratio 690:1536 (9:20) */
+        /* Carousel wrapper with external arrows */
         .carousel-section {
             padding: 40px 0;
             background-color: var(--background-color);
             text-align: center;
         }
 
+        .carousel-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: nowrap;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
         .carousel-container {
             position: relative;
             width: 100%;
-            max-width: 360px;   /* حجم صغير مناسب */
-            margin: 0 auto;
+            max-width: 360px;
+            margin: 0;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: var(--shadow);
             background: #000;
         }
 
-        /* نسبة الأبعاد الدقيقة 690 : 1536 */
         .carousel-images {
             position: relative;
             width: 100%;
-            aspect-ratio: 690 / 1536; /* 9:20 بالضبط */
+            aspect-ratio: 690 / 1536; /* 9:20 exact */
             background: #1a1a1a;
         }
 
@@ -223,47 +232,48 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: contain;   /* تظهر الصورة كاملة بدون قص، وتحافظ على أبعادها */
+            object-fit: contain;
             opacity: 0;
-            transition: opacity 0.5s ease-in-out;
+            transition: opacity 0.4s ease-in-out;
         }
 
         .carousel-img.active {
             opacity: 1;
         }
 
+        /* External arrow buttons (far from image) */
         .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(4px);
-            border: none;
-            width: 40px;
-            height: 40px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
+            background: var(--gradient);
+            border: none;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            z-index: 10;
             transition: var(--transition);
             color: white;
-            font-size: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            font-size: 24px;
+            box-shadow: var(--shadow);
+            flex-shrink: 0;
         }
 
         .carousel-btn:hover {
-            background: var(--primary-color);
-            transform: translateY(-50%) scale(1.05);
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        .carousel-btn.prev {
-            left: 12px;
-        }
-
-        .carousel-btn.next {
-            right: 12px;
+        /* Responsive: on small screens, reduce button size and gap */
+        @media (max-width: 600px) {
+            .carousel-wrapper {
+                gap: 12px;
+            }
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
         }
 
         /* Versions section */
@@ -772,12 +782,7 @@
                 gap: 10px;
             }
             .carousel-container {
-                max-width: 300px;
-            }
-            .carousel-btn {
-                width: 36px;
-                height: 36px;
-                font-size: 18px;
+                max-width: 280px;
             }
             .dev-fab {
                 width: 50px;
@@ -790,7 +795,7 @@
 </head>
 <body>
 
-    <!-- تم إزالة رسالة التحديث -->
+    <!-- Removed update modal -->
 
     <header>
         <div class="container">
@@ -799,41 +804,29 @@
                     <div class="logo-icon">iOS</div>
                     <div class="logo-text">iOS Store</div>
                 </a>
-                
                 <div class="social-icons">
-                    <a href="https://wa.me/201550425843" class="social-icon" target="_blank" aria-label="WhatsApp">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                    <a href="https://www.instagram.com/mhamedashrf.0" class="social-icon" target="_blank" aria-label="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://t.me/h_moh_za" class="social-icon" target="_blank" aria-label="Telegram">
-                        <i class="fab fa-telegram"></i>
-                    </a>
+                    <a href="https://wa.me/201550425843" class="social-icon" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/mhamedashrf.0" class="social-icon" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://t.me/h_moh_za" class="social-icon" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
                 </div>
-                
                 <div class="theme-toggle-container">
-                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
-                        <i class="fas fa-sun"></i>
-                    </button>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode"><i class="fas fa-sun"></i></button>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- CAROUSEL بنسبة أبعاد 690:1536 -->
+    <!-- Carousel with external arrows and swipe support -->
     <section class="carousel-section">
-        <div class="carousel-container">
-            <div class="carousel-images">
-                <img src="dark.png" alt="Dark Theme Preview" class="carousel-img active">
-                <img src="light.png" alt="Light Theme Preview" class="carousel-img">
+        <div class="carousel-wrapper">
+            <button class="carousel-btn" id="prevBtnExternal" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+            <div class="carousel-container" id="carouselContainer">
+                <div class="carousel-images" id="carouselImages">
+                    <img src="dark.png" alt="Dark Theme Preview" class="carousel-img active" id="img1">
+                    <img src="light.png" alt="Light Theme Preview" class="carousel-img" id="img2">
+                </div>
             </div>
-            <button class="carousel-btn prev" id="prevBtn" aria-label="Previous">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="carousel-btn next" id="nextBtn" aria-label="Next">
-                <i class="fas fa-chevron-right"></i>
-            </button>
+            <button class="carousel-btn" id="nextBtnExternal" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
         </div>
     </section>
 
@@ -901,32 +894,110 @@
     </div>
 
     <script>
+        // Carousel data
         const images = document.querySelectorAll('.carousel-img');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtnExternal');
+        const nextBtn = document.getElementById('nextBtnExternal');
         let currentIndex = 0;
         const total = images.length;
-        function update() { images.forEach((img, i) => i === currentIndex ? img.classList.add('active') : img.classList.remove('active')); }
-        nextBtn.onclick = () => { currentIndex = (currentIndex + 1) % total; update(); };
-        prevBtn.onclick = () => { currentIndex = (currentIndex - 1 + total) % total; update(); };
-        
+
+        function updateCarousel() {
+            images.forEach((img, idx) => {
+                if (idx === currentIndex) img.classList.add('active');
+                else img.classList.remove('active');
+            });
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % total;
+            updateCarousel();
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + total) % total;
+            updateCarousel();
+        }
+
+        nextBtn.addEventListener('click', nextImage);
+        prevBtn.addEventListener('click', prevImage);
+
+        // --- SWIPE (touch) support for mobile ---
+        const carouselContainer = document.getElementById('carouselContainer');
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        carouselContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
+
+        carouselContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const deltaX = touchEndX - touchStartX;
+            if (Math.abs(deltaX) > 50) { // minimum swipe distance
+                if (deltaX > 0) {
+                    prevImage(); // swipe right -> previous
+                } else {
+                    nextImage(); // swipe left -> next
+                }
+            }
+        }, false);
+
+        // Dark/Light mode toggle
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = themeToggle.querySelector('i');
         document.body.classList.remove('light-mode');
         themeIcon.classList.add('fa-sun');
-        themeToggle.onclick = () => {
+
+        themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
-            if (document.body.classList.contains('light-mode')) { themeIcon.classList.remove('fa-sun'); themeIcon.classList.add('fa-moon'); }
-            else { themeIcon.classList.remove('fa-moon'); themeIcon.classList.add('fa-sun'); }
+            if (document.body.classList.contains('light-mode')) {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            } else {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
             localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
-        };
-        if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light-mode'); themeIcon.classList.remove('fa-sun'); themeIcon.classList.add('fa-moon'); }
-        
-        const devFab = document.getElementById('devFab'), devModal = document.getElementById('devModal'), closeDev = document.getElementById('closeDevModal');
-        devFab.onclick = () => { devModal.style.display = 'flex'; document.body.style.overflow = 'hidden'; };
-        const closeModal = () => { devModal.style.display = 'none'; document.body.style.overflow = 'auto'; };
-        closeDev.onclick = closeModal;
-        window.onclick = (e) => { if (e.target === devModal) closeModal(); };
+        });
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({ top: targetElement.offsetTop - 100, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Developer modal logic
+        const devFab = document.getElementById('devFab');
+        const devModal = document.getElementById('devModal');
+        const closeDevModal = document.getElementById('closeDevModal');
+
+        function openDevModal() {
+            devModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeDevModalFunc() {
+            devModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        devFab.addEventListener('click', openDevModal);
+        closeDevModal.addEventListener('click', closeDevModalFunc);
+        window.addEventListener('click', (e) => {
+            if (e.target === devModal) closeDevModalFunc();
+        });
     </script>
 </body>
-                        </html>
+                                                                                                                  </html>
