@@ -3,42 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>iOS Store - WhatsApp New Update</title>
+    <title>iOS Store - WhatsApp New Update | Liquid Glass</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary-color: #128C7E;
-            --secondary-color: #25D366;
-            --accent-color: #34B7F1;
-            --background-color: #121212;
-            --text-color: #F5F5F7;
-            --card-color: #1E1E1E;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            --transition: all 0.3s ease;
-            --gradient: linear-gradient(135deg, #075E54, #128C7E, #25D366);
-            --gradient-light: linear-gradient(135deg, rgba(7, 94, 84, 0.1), rgba(18, 140, 126, 0.1), rgba(37, 211, 102, 0.1));
-            --whatsapp-green: #25D366;
-            --whatsapp-dark-green: #075E54;
-            --header-bg: rgba(20, 20, 20, 0.95);
-            --danger-red: #e74c3c;
-        }
-
-        .light-mode {
-            --primary-color: #128C7E;
-            --secondary-color: #25D366;
-            --accent-color: #34B7F1;
-            --background-color: #F5F5F7;
-            --text-color: #1D1D1F;
-            --card-color: #FFFFFF;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            --gradient: linear-gradient(135deg, #075E54, #128C7E, #25D366);
-            --gradient-light: linear-gradient(135deg, rgba(7, 94, 84, 0.1), rgba(18, 140, 126, 0.1), rgba(37, 211, 102, 0.1));
-            --whatsapp-green: #25D366;
-            --whatsapp-dark-green: #075E54;
-            --header-bg: rgba(240, 240, 240, 0.95);
-            --danger-red: #c0392b;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -46,51 +13,70 @@
             font-family: 'SF Pro Display', 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
+        /* LIQUID GLASS GLOBAL STYLES - Glassmorphism Core */
+        :root {
+            --glass-bg: rgba(20, 20, 30, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+            --primary-color: #128C7E;
+            --secondary-color: #25D366;
+            --accent-color: #34B7F1;
+            --background-color: #0f0f13;
+            --text-color: #F5F5F7;
+            --card-glass: rgba(25, 25, 35, 0.55);
+            --header-glass: rgba(15, 15, 20, 0.65);
+            --whatsapp-green: #25D366;
+            --danger-red: #e74c3c;
+            --gradient: linear-gradient(135deg, #075E54, #128C7E, #25D366);
+            --gradient-light: linear-gradient(135deg, rgba(7, 94, 84, 0.4), rgba(18, 140, 126, 0.4), rgba(37, 211, 102, 0.4));
+        }
+
+        .light-mode {
+            --glass-bg: rgba(235, 240, 250, 0.55);
+            --glass-border: rgba(0, 0, 0, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
+            --background-color: #eef2f8;
+            --text-color: #1a1a2e;
+            --card-glass: rgba(245, 248, 255, 0.65);
+            --header-glass: rgba(240, 245, 255, 0.7);
+            --gradient: linear-gradient(135deg, #075E54, #128C7E, #25D366);
+        }
+
         body {
-            background-color: var(--background-color);
+            background: radial-gradient(circle at 10% 20%, rgba(18, 140, 126, 0.15), rgba(0, 0, 0, 0.2)), var(--background-color);
             color: var(--text-color);
-            transition: var(--transition);
+            transition: background 0.3s ease, color 0.2s;
             line-height: 1.6;
             min-height: 100vh;
-            overflow-x: hidden;
+            backdrop-filter: blur(2px);
         }
 
-        /* beating heart */
-        .beating-heart {
-            display: inline-block;
-            animation: heartbeat 1.2s infinite ease-in-out;
-            color: #e25555;
-            margin-right: 6px;
-        }
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+        /* Liquid glass base effect for all cards, sections, headers */
+        header, .versions-main-box, .feature-card, .developer, .modal-card, 
+        .carousel-container, .social-icon, .theme-toggle, .download-btn, 
+        .news-btn, .carousel-btn, .dev-fab, .footer-link, .version-item {
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
         }
 
-        /* Important alert red large (inside arabic popup) */
-        .important-alert {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--danger-red);
-            text-align: center;
-            margin: 15px 0;
-            text-shadow: 0 0 5px rgba(231,76,60,0.3);
-            letter-spacing: -0.5px;
-        }
-        @media (max-width: 600px) {
-            .important-alert { font-size: 24px; }
+        /* Extra glossy hover */
+        .feature-card:hover, .version-item:hover, .social-icon:hover, .download-btn:hover, .news-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-5px);
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
 
         header {
-            background-color: var(--header-bg);
-            box-shadow: var(--shadow);
+            background: var(--header-glass);
+            backdrop-filter: blur(20px) saturate(200%);
+            border-bottom: 1px solid var(--glass-border);
             position: sticky;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 8px 0;
         }
 
         .container {
@@ -100,22 +86,6 @@
             padding: 0 15px;
         }
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 60px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            flex-shrink: 0;
-        }
-
-        /* Circular image frame */
         .logo-icon {
             width: 50px;
             height: 50px;
@@ -127,291 +97,217 @@
             overflow: hidden;
             box-shadow: 0 6px 16px rgba(0,0,0,0.3);
             cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s;
-            border: 2px solid rgba(255,255,255,0.2);
+            transition: 0.2s;
+            border: 2px solid rgba(255,255,255,0.3);
         }
         .logo-icon img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
         }
-        .logo-icon:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 24px rgba(18,140,126,0.4);
-        }
-
         .logo-text {
             font-size: 24px;
             font-weight: 800;
             background: var(--gradient);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             background-clip: text;
-            white-space: nowrap;
+            -webkit-text-fill-color: transparent;
         }
 
         .social-icons {
             display: flex;
-            justify-content: center;
-            align-items: center;
             gap: 15px;
-            flex: 1;
-            max-width: 400px;
-            margin: 0 20px;
         }
-
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: var(--card-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-color);
-            text-decoration: none;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .social-icon::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient);
-            opacity: 0;
-            transition: var(--transition);
-            z-index: -1;
-        }
-
-        .social-icon:hover {
-            transform: translateY(-5px) scale(1.1);
-            color: white;
-        }
-        .social-icon:hover::before { opacity: 1; }
-
-        .theme-toggle-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            flex-shrink: 0;
-        }
-        .theme-toggle {
-            background: var(--card-color);
-            border: none;
+        .social-icon, .theme-toggle {
             width: 44px;
             height: 44px;
             border-radius: 50%;
-            color: var(--text-color);
-            font-size: 20px;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-        }
-        .theme-toggle:hover {
-            transform: rotate(15deg);
-            background: var(--gradient);
-            color: white;
-        }
-
-        /* Carousel */
-        .carousel-section { padding: 40px 0; background-color: var(--background-color); text-align: center; }
-        .carousel-wrapper {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 20px;
-            flex-wrap: nowrap;
-            max-width: 600px;
-            margin: 0 auto;
+            background: var(--glass-bg);
+            color: var(--text-color);
+            transition: 0.2s;
         }
+
+        /* Carousel glass */
         .carousel-container {
-            position: relative;
-            width: 100%;
-            max-width: 360px;
-            border-radius: 20px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 32px;
             overflow: hidden;
-            box-shadow: var(--shadow);
-            background: #000;
-        }
-        .carousel-images {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 690 / 1536;
-            background: #1a1a1a;
+            backdrop-filter: blur(8px);
         }
         .carousel-img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            opacity: 0;
-            transition: opacity 0.4s ease-in-out;
+            transition: opacity 0.4s;
         }
-        .carousel-img.active { opacity: 1; }
         .carousel-btn {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: var(--gradient);
+            background: var(--glass-bg);
             border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
             color: white;
             font-size: 24px;
-            box-shadow: var(--shadow);
+            backdrop-filter: blur(12px);
+            cursor: pointer;
         }
-        .carousel-btn:hover { transform: scale(1.1); }
 
-        /* Versions section - single version */
-        .versions-section { padding: 60px 0; text-align: center; }
-        .versions-title {
-            font-size: 32px;
-            margin-bottom: 40px;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 800;
-            position: relative;
-        }
-        .versions-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: var(--gradient);
-            border-radius: 2px;
-        }
+        /* Version section */
         .versions-main-box {
-            background: linear-gradient(145deg, rgba(30, 30, 30, 0.95), rgba(20, 20, 20, 0.95));
+            border-radius: 32px;
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            max-width: 700px;
-            margin: 0 auto;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-        }
-        .light-mode .versions-main-box {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(245, 245, 245, 0.95));
-        }
-        .versions-main-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient);
+            backdrop-filter: blur(16px);
         }
         .version-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.08);
             flex-wrap: wrap;
-            gap: 15px;
-        }
-        .version-item:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: translateY(-3px);
+            gap: 20px;
+            padding: 20px;
+            border-radius: 28px;
+            backdrop-filter: blur(8px);
         }
         .version-content {
             display: flex;
             align-items: center;
-            gap: 15px;
-            flex: 1;
+            gap: 20px;
             flex-wrap: wrap;
         }
         .whatsapp-icon {
+            font-size: 32px;
             color: var(--whatsapp-green);
-            font-size: 28px;
-            background: rgba(37, 211, 102, 0.15);
-            width: 48px;
-            height: 48px;
+            background: rgba(37,211,102,0.2);
+            border-radius: 50%;
+            width: 54px;
+            height: 54px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
         }
         .version-id {
-            font-size: 16px;
+            font-family: monospace;
+            background: rgba(255,255,255,0.15);
             padding: 6px 14px;
-            background-color: rgba(255, 255, 255, 0.08);
             border-radius: 40px;
-            font-family: 'Courier New', monospace;
-            font-weight: 600;
-            color: var(--whatsapp-green);
-            border: 1px solid rgba(37, 211, 102, 0.4);
+            font-weight: bold;
         }
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--gradient);
-            color: white;
+        .download-btn, .news-btn {
             padding: 10px 28px;
             border-radius: 40px;
+            font-weight: bold;
             text-decoration: none;
-            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            cursor: pointer;
             font-size: 15px;
-            transition: var(--transition);
-            box-shadow: 0 5px 12px rgba(18, 140, 126, 0.4);
-            white-space: nowrap;
         }
-        .download-btn:hover {
+        .news-btn {
+            background: linear-gradient(135deg, #1e2a3a, #0f172a);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .news-btn:hover {
+            background: linear-gradient(135deg, #2c3e50, #1e2a3a);
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(18, 140, 126, 0.6);
+        }
+        .button-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
         }
 
-        /* features, about, footer */
-        .features { padding: 60px 0; background-color: var(--card-color); }
-        .section-title { text-align: center; font-size: 32px; margin-bottom: 40px; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; position: relative; }
-        .section-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 3px; background: var(--gradient); border-radius: 2px; }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .feature-card { background-color: var(--background-color); padding: 25px; border-radius: 15px; box-shadow: var(--shadow); transition: var(--transition); text-align: center; border: 1px solid rgba(255,255,255,0.05); position: relative; }
-        .feature-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--gradient); }
-        .feature-card:hover { transform: translateY(-8px); }
-        .feature-icon { font-size: 40px; margin-bottom: 20px; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        /* Features / About / Footer glass */
+        .feature-card, .developer, .about-content p, .footer-links a {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            border-radius: 28px;
+            padding: 25px;
+            border: 1px solid var(--glass-border);
+        }
+        .feature-card {
+            text-align: center;
+            transition: 0.25s;
+        }
+        .developer {
+            margin-top: 30px;
+            text-align: center;
+        }
+        footer {
+            background: var(--header-glass);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--glass-border);
+            margin-top: 30px;
+        }
 
-        .about { padding: 60px 0; }
-        .about-content { max-width: 800px; margin: 0 auto; text-align: center; }
-        .about-content h2 { font-size: 32px; margin-bottom: 25px; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; position: relative; }
-        .about-content h2::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 3px; background: var(--gradient); }
-        .developer { margin-top: 30px; padding: 20px; background-color: var(--card-color); border-radius: 15px; box-shadow: var(--shadow); border: 1px solid rgba(255,255,255,0.05); position: relative; }
-        .developer::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--gradient); }
-        .developer h3 { font-size: 22px; margin-bottom: 10px; }
-        .developer p { font-size: 16px; opacity: 0.9; margin: 6px 0; }
-        .developer i { margin-right: 8px; color: var(--whatsapp-green); }
-
-        footer { background-color: var(--card-color); padding: 40px 0 20px; text-align: center; box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3); }
-        .footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 25px; flex-wrap: wrap; }
-        .footer-link { color: var(--text-color); text-decoration: none; transition: var(--transition); font-size: 14px; position: relative; }
-        .footer-link::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--gradient); transition: var(--transition); }
-        .footer-link:hover { color: var(--primary-color); }
-        .footer-link:hover::after { width: 100%; }
-        .copyright { font-size: 15px; font-weight: 500; letter-spacing: 0.5px; margin-top: 20px; display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; }
-
-        /* Floating developer button - on the right */
+        /* Modals with liquid glass */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-card {
+            background: var(--card-glass);
+            backdrop-filter: blur(24px);
+            border-radius: 48px;
+            width: 90%;
+            max-width: 480px;
+            border: 1px solid rgba(255,255,255,0.35);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.3);
+            animation: fadeSlideUp 0.35s ease;
+            overflow: hidden;
+        }
+        .modal-header {
+            background: linear-gradient(135deg, rgba(7,94,84,0.8), rgba(18,140,126,0.8));
+            padding: 20px;
+            text-align: center;
+            color: white;
+            font-size: 22px;
+        }
+        .modal-body {
+            padding: 28px 24px;
+            text-align: center;
+        }
+        .close-modal-btn {
+            background: var(--gradient);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .beating-heart {
+            animation: heartbeat 1.2s infinite;
+            display: inline-block;
+        }
+        @keyframes heartbeat {
+            0%,100%{ transform: scale(1);}
+            50%{ transform: scale(1.2);}
+        }
+        .specs-list p {
+            margin: 12px 0;
+        }
+        .app-specs-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            border: 3px solid var(--primary-color);
+        }
         .dev-fab {
             position: fixed;
             bottom: 25px;
@@ -419,141 +315,87 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: var(--gradient);
-            border: 2px solid rgba(255,255,255,0.3);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(255,255,255,0.4);
             cursor: pointer;
             z-index: 1100;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
             overflow: hidden;
-            padding: 4px;
+            padding: 5px;
         }
-        .dev-fab:hover { transform: scale(1.08); }
-        .dev-fab img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-
-        /* Modals */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
+        .dev-fab img {
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(5px);
-        }
-        .modal-card {
-            background-color: var(--card-color);
-            border-radius: 32px;
-            width: 90%;
-            max-width: 420px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            animation: fadeSlideUp 0.3s ease;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        @keyframes fadeSlideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .modal-header {
-            background: var(--gradient);
-            padding: 20px;
-            color: white;
-        }
-        .modal-header h2 { font-size: 24px; margin: 0; }
-        .modal-body { padding: 25px 20px; }
-        
-        /* App specs image - CIRCLE */
-        .app-specs-img {
-            width: 110px;
-            height: 110px;
             border-radius: 50%;
-            margin: 0 auto 20px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            border: 3px solid var(--primary-color);
-        }
-        .app-specs-img img {
-            width: 100%;
-            height: 100%;
             object-fit: cover;
-            display: block;
         }
-        .specs-list {
-            text-align: left;
-            background: var(--background-color);
-            padding: 15px;
-            border-radius: 20px;
-            margin-top: 10px;
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; gap: 12px; }
+            .version-item { flex-direction: column; text-align: center; }
+            .button-group { justify-content: center; }
+            .version-content { justify-content: center; }
         }
-        .specs-list p {
-            margin: 12px 0;
-            font-size: 16px;
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .section-title, .versions-title, .about-content h2 {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .section-title::after, .versions-title::after, .about-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 3px;
+        }
+        .footer-links {
             display: flex;
-            align-items: center;
-            gap: 10px;
             justify-content: center;
+            gap: 25px;
             flex-wrap: wrap;
         }
-        .close-modal-btn {
-            background: var(--gradient);
-            border: none;
-            padding: 12px 28px;
-            border-radius: 40px;
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            margin: 10px 0 20px;
-            transition: 0.2s;
+        .footer-link {
+            padding: 8px 16px;
+            border-radius: 60px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
         }
-        .close-modal-btn:hover { transform: scale(1.02); opacity: 0.95; }
-
+        .copyright {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
         .warning-message-text {
             font-size: 17px;
-            line-height: 1.7;
+            line-height: 1.6;
             text-align: center;
-            margin-bottom: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .nav-container { flex-direction: column; height: auto; gap: 12px; padding: 10px 0; }
-            .logo { order: 1; }
-            .social-icons { order: 2; margin: 8px 0; max-width: 100%; }
-            .theme-toggle-container { order: 3; }
-            .version-item { flex-direction: column; text-align: center; }
-            .version-content { justify-content: center; }
-            .download-btn { width: 80%; }
-            .dev-fab { width: 52px; height: 52px; right: 20px; bottom: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Initial Warning Modal (ARABIC as requested) -->
-    <div id="initialWarningModal" class="modal-overlay" style="display: flex;">
-        <div class="modal-card">
-            <div class="modal-header" style="background: #c0392b;">
-                <h2><i class="fas fa-exclamation-triangle"></i> تنبيه هام</h2>
-            </div>
-            <div class="modal-body">
-                <div class="important-alert">❗ تنبيه مهم ! ❗</div>
-                <div class="warning-message-text">
-                    لجميع مستخدمي واتساب القدام سوف يتم إيقاف جميع النسخ القديمة لضمان عدم خروج اي مستخدم من التطبيق <br><br>
-                    التحديث الجديد يضمن إضافات جديدة كليا عن الواتساب القديم <br><br>
-                    ⚠️ يجب حزف النسخة القديمة لانه سوف يتم ايقافها عن العمل
-                </div>
-                <button class="close-modal-btn" id="closeWarningBtn" style="background: linear-gradient(135deg, #e67e22, #e74c3c);">حسنا</button>
-            </div>
-        </div>
-    </div>
+    <!-- REMOVED initial warning modal completely (Arabic first popup deleted) -->
 
-    <!-- App Specs Modal (English, circular image) -->
+    <!-- App Specs Modal (English) -->
     <div id="appSpecsModal" class="modal-overlay">
         <div class="modal-card">
             <div class="modal-header">
@@ -574,11 +416,35 @@
         </div>
     </div>
 
+    <!-- WhatsApp News Modal (ARABIC ONLY, with links) -->
+    <div id="newsModal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header" style="background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);">
+                <h2><i class="fab fa-whatsapp"></i> WhatsApp News</h2>
+            </div>
+            <div class="modal-body">
+                <div style="font-size: 22px; font-weight: 800; margin-bottom: 15px; color: var(--whatsapp-green);">🌟 مميزات الواتساب للتحديث الجديد 🌟</div>
+                <div class="warning-message-text" style="text-align: right; direction: rtl; font-size: 18px;">
+                    <ul style="list-style: none; text-align: right; padding-right: 0;">
+                        <li style="margin: 12px 0;">✅ 1 - تم اصلاح تنزيل الحالة</li>
+                        <li style="margin: 12px 0;">✅ 2 - تم تعديل الواجهة لمناسبة استخدامك</li>
+                        <li style="margin: 12px 0;">✅ 3 - تم تعديل إضافات واتساب لشكل افضل من السابق</li>
+                    </ul>
+                    <p style="margin-top: 20px; font-weight: 500;">نحن هنا دائما لاسعادكم وسنقوم بتطوير التطبيق قريبا ليناسب استخدامكم<br>
+                    تحت إشراف مطورين التطبيق 
+                    <a href="https://rcmods.online" target="_blank" style="color: #25D366; font-weight: bold; text-decoration: underline;">RCMods</a> & 
+                    <a href="https://ios-storex.github.io/whatsapp/" target="_blank" style="color: #34B7F1; font-weight: bold; text-decoration: underline;">iOS STORE</a>
+                    </p>
+                </div>
+                <button class="close-modal-btn" id="closeNewsModalBtn">فهمت</button>
+            </div>
+        </div>
+    </div>
+
     <header>
         <div class="container">
             <div class="nav-container">
                 <a href="#" class="logo">
-                    <!-- Circular image frame -->
                     <div class="logo-icon" id="appLogoBtn">
                         <img src="whatsapp.png" alt="WhatsApp icon">
                     </div>
@@ -598,10 +464,10 @@
 
     <!-- Carousel Section -->
     <section class="carousel-section">
-        <div class="carousel-wrapper">
+        <div class="carousel-wrapper" style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; max-width: 600px; margin: 40px auto;">
             <button class="carousel-btn" id="prevBtnExternal"><i class="fas fa-chevron-left"></i></button>
-            <div class="carousel-container" id="carouselContainer">
-                <div class="carousel-images">
+            <div class="carousel-container" id="carouselContainer" style="width: 100%; max-width: 360px; border-radius: 32px;">
+                <div class="carousel-images" style="position: relative; width: 100%; aspect-ratio: 690 / 1536;">
                     <img src="dark.png" alt="Dark Theme Preview" class="carousel-img active" id="img1">
                     <img src="light.png" alt="Light Theme Preview" class="carousel-img" id="img2">
                 </div>
@@ -610,7 +476,7 @@
         </div>
     </section>
 
-    <!-- WhatsApp Version - only com.whatsma (old versions removed) -->
+    <!-- WhatsApp Version + NEW WhatsApp News Button -->
     <section class="versions-section">
         <div class="container">
             <h2 class="versions-title">New WhatsApp Version</h2>
@@ -620,7 +486,10 @@
                         <div class="whatsapp-icon"><i class="fab fa-whatsapp"></i></div>
                         <div class="version-text"><span class="version-id">com.whatsma</span></div>
                     </div>
-                    <a href="https://www.mediafire.com/file/mvznxns9plbos03/WhatsApp_fixed.apk/file" class="download-btn" target="_blank">Download Now</a>
+                    <div class="button-group">
+                        <a href="https://www.mediafire.com/file/mvznxns9plbos03/WhatsApp_fixed.apk/file" class="download-btn" target="_blank"><i class="fas fa-download"></i> Download Now</a>
+                        <button id="whatsappNewsBtn" class="news-btn"><i class="fas fa-newspaper"></i> WhatsApp News</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -629,7 +498,7 @@
     <section class="features">
         <div class="container">
             <h2 class="section-title">App Features</h2>
-            <div class="features-grid">
+            <div class="features-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 28px;">
                 <div class="feature-card"><div class="feature-icon"><i class="fas fa-shield-alt"></i></div><h3>Advanced Security</h3><p>Double encryption to protect your conversations and data.</p></div>
                 <div class="feature-card"><div class="feature-icon"><i class="fas fa-bolt"></i></div><h3>Fast Performance</h3><p>Optimized design for super fast loading and responsiveness.</p></div>
                 <div class="feature-card"><div class="feature-icon"><i class="fas fa-palette"></i></div><h3>Full Customization</h3><p>Choose from dozens of themes and colors to customize your app.</p></div>
@@ -667,7 +536,7 @@
         </div>
     </footer>
 
-    <!-- Developer floating button (right side) -->
+    <!-- Developer floating button -->
     <div class="dev-fab" id="devFab">
         <img src="dev.png" alt="Developer Avatar">
     </div>
@@ -688,61 +557,39 @@
     </div>
 
     <script>
-        // 1. Initial Arabic warning modal: disappears on "حسنا"
-        const warningModal = document.getElementById('initialWarningModal');
-        const closeWarning = document.getElementById('closeWarningBtn');
-        closeWarning.addEventListener('click', () => {
-            warningModal.style.display = 'none';
-        });
-        // prevent closing by clicking outside (must press button)
-        warningModal.addEventListener('click', (e) => {
-            if(e.target === warningModal) return;
-        });
+        // ========== LIQUID GLASS + REMOVED INITIAL ARABIC MODAL ==========
+        // 1. No initial warning anymore (removed completely)
 
-        // 2. App specs modal (circular image)
+        // 2. App specs modal (english)
         const appSpecsModal = document.getElementById('appSpecsModal');
         const appLogoBtn = document.getElementById('appLogoBtn');
         const closeAppSpecs = document.getElementById('closeAppSpecsBtn');
-        function openAppSpecs() {
-            appSpecsModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-        function closeAppSpecsModal() {
-            appSpecsModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
+        function openAppSpecs() { appSpecsModal.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+        function closeAppSpecsModal() { appSpecsModal.style.display = 'none'; document.body.style.overflow = 'auto'; }
         appLogoBtn.addEventListener('click', openAppSpecs);
         closeAppSpecs.addEventListener('click', closeAppSpecsModal);
-        appSpecsModal.addEventListener('click', (e) => {
-            if(e.target === appSpecsModal) closeAppSpecsModal();
-        });
+        appSpecsModal.addEventListener('click', (e) => { if(e.target === appSpecsModal) closeAppSpecsModal(); });
 
-        // 3. Carousel with swipe
+        // 3. Carousel logic
         const images = document.querySelectorAll('.carousel-img');
         const prevBtn = document.getElementById('prevBtnExternal');
         const nextBtn = document.getElementById('nextBtnExternal');
         let currentIndex = 0;
         const total = images.length;
-        function updateCarousel() {
-            images.forEach((img, idx) => {
-                if (idx === currentIndex) img.classList.add('active');
-                else img.classList.remove('active');
-            });
-        }
+        function updateCarousel() { images.forEach((img, idx) => { idx === currentIndex ? img.classList.add('active') : img.classList.remove('active'); }); }
         function nextImage() { currentIndex = (currentIndex + 1) % total; updateCarousel(); }
         function prevImage() { currentIndex = (currentIndex - 1 + total) % total; updateCarousel(); }
-        nextBtn.addEventListener('click', nextImage);
-        prevBtn.addEventListener('click', prevImage);
-
-        const carouselContainer = document.getElementById('carouselContainer');
+        if(nextBtn) nextBtn.addEventListener('click', nextImage);
+        if(prevBtn) prevBtn.addEventListener('click', prevImage);
+        const carouselContainerDiv = document.getElementById('carouselContainer');
         let touchStartX = 0;
-        carouselContainer.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; });
-        carouselContainer.addEventListener('touchend', (e) => {
-            let delta = e.changedTouches[0].screenX - touchStartX;
-            if (Math.abs(delta) > 50) {
-                delta > 0 ? prevImage() : nextImage();
-            }
-        });
+        if(carouselContainerDiv) {
+            carouselContainerDiv.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; });
+            carouselContainerDiv.addEventListener('touchend', (e) => {
+                let delta = e.changedTouches[0].screenX - touchStartX;
+                if (Math.abs(delta) > 50) delta > 0 ? prevImage() : nextImage();
+            });
+        }
 
         // 4. Theme toggle (dark/light)
         const themeToggle = document.getElementById('themeToggle');
@@ -772,13 +619,36 @@
         const devFab = document.getElementById('devFab');
         const devModal = document.getElementById('devModal');
         const closeDevModalBtn = document.getElementById('closeDevModal');
-        function openDevModalFunc() { devModal.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+        function openDevModal() { devModal.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
         function closeDevModalFunc() { devModal.style.display = 'none'; document.body.style.overflow = 'auto'; }
-        devFab.addEventListener('click', openDevModalFunc);
+        devFab.addEventListener('click', openDevModal);
         closeDevModalBtn.addEventListener('click', closeDevModalFunc);
         devModal.addEventListener('click', (e) => { if(e.target === devModal) closeDevModalFunc(); });
 
-        // Smooth scroll for anchor links
+        // 6. NEWSLETTER MODAL (WhatsApp News) - Arabic only, with links
+        const newsModal = document.getElementById('newsModal');
+        const whatsappNewsBtn = document.getElementById('whatsappNewsBtn');
+        const closeNewsBtn = document.getElementById('closeNewsModalBtn');
+        
+        function openNewsModal() {
+            newsModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeNewsModal() {
+            newsModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        if(whatsappNewsBtn) {
+            whatsappNewsBtn.addEventListener('click', openNewsModal);
+        }
+        if(closeNewsBtn) {
+            closeNewsBtn.addEventListener('click', closeNewsModal);
+        }
+        newsModal.addEventListener('click', (e) => {
+            if(e.target === newsModal) closeNewsModal();
+        });
+
+        // Smooth scroll for anchors
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 let target = this.getAttribute('href');
@@ -790,6 +660,10 @@
                 }
             });
         });
+
+        // Additional liquid glass micro-interactions: ensure all dynamic content respects glass
+        // Also any extra cleanup: completely removed initial warning.
+        console.log("Liquid Glass mode active | WhatsApp News button with Arabic modal ready");
     </script>
 </body>
-</html>
+    </html>
