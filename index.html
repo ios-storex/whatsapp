@@ -1071,7 +1071,50 @@
         </div>
     </div>
 
+    <!-- Image Lightbox Modal -->
+    <div id="imgLightbox" style="
+        display:none; position:fixed; inset:0; z-index:3000;
+        background:rgba(0,0,0,0.88); backdrop-filter:blur(12px);
+        -webkit-backdrop-filter:blur(12px);
+        justify-content:center; align-items:center;
+    " onclick="closeLightbox()">
+        <img id="lightboxImg" src="" alt="" style="
+            max-width:88vw; max-height:88vh;
+            border-radius:22px;
+            box-shadow:0 30px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.12);
+            object-fit:contain;
+            animation: lbZoom 0.28s cubic-bezier(.4,0,.2,1);
+        ">
+        <button onclick="closeLightbox()" style="
+            position:fixed; top:20px; right:20px;
+            width:44px; height:44px; border-radius:50%;
+            background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.25);
+            color:#fff; font-size:20px; cursor:pointer;
+            display:flex; align-items:center; justify-content:center;
+            backdrop-filter:blur(10px);
+        "><i class="fas fa-times"></i></button>
+    </div>
+    <style>
+        @keyframes lbZoom {
+            from { opacity:0; transform:scale(0.88); }
+            to   { opacity:1; transform:scale(1); }
+        }
+        .carousel-img { cursor: zoom-in; }
+    </style>
+
     <script>
+        function openLightbox(src){ 
+            const lb = document.getElementById('imgLightbox');
+            document.getElementById('lightboxImg').src = src;
+            lb.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox(){
+            document.getElementById('imgLightbox').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeLightbox(); });
+
         // App specs modal
         const appSpecsModal = document.getElementById('appSpecsModal');
         const appLogoBtn    = document.getElementById('appLogoBtn');
@@ -1093,6 +1136,11 @@
         function prevImage(){ currentIndex=(currentIndex-1+total)%total; updateCarousel(); }
         nextBtn.addEventListener('click', nextImage);
         prevBtn.addEventListener('click', prevImage);
+
+        // Click image to open lightbox
+        images.forEach(img => {
+            img.addEventListener('click', () => { if(img.src) openLightbox(img.src); });
+        });
         const carouselContainer = document.getElementById('carouselContainer');
         let touchStartX = 0;
         carouselContainer.addEventListener('touchstart', e=>{ touchStartX=e.changedTouches[0].screenX; });
