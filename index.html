@@ -1139,7 +1139,10 @@
 
         // Click image to open lightbox
         images.forEach(img => {
-            img.addEventListener('click', () => { if(img.src) openLightbox(img.src); });
+            img.addEventListener('click', () => {
+                const activeSrc = images[currentIndex].getAttribute('src');
+                if(activeSrc) openLightbox(activeSrc);
+            });
         });
         const carouselContainer = document.getElementById('carouselContainer');
         let touchStartX = 0;
